@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2 
       - name: unzip
         run: |
-          rm -r app
+          rm -rf app
           filename=$(basename -s .zip *.zip)
           unzip *.zip
           mv *.zip uploads/packages/archive/$filename_$(date +%F-%H:%M).zip
