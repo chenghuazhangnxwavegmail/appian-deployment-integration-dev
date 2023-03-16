@@ -16,10 +16,6 @@ jobs:
           unzip uploads/packages/*.zip -d app
           mv uploads/packages/*.zip uploads/packages/archive/$(date +%F-%H:%M).zip
 
-  commit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2 
       - name: commit
         run: |
           git config user.name github-actions
