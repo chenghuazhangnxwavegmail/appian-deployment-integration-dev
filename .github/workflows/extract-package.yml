@@ -12,10 +12,10 @@ jobs:
       - name: unzip
         run: |
           rm -rf app
-          filename=$(basename -s .zip *.zip)
-          unzip *.zip
-          mv *.zip uploads/packages/archive/$filename_$(date +%F-%H:%M).zip
-          mv $filename app
+          filename=$(basename -s .zip uploads/packages/*.zip)
+          unzip uploads/packages/*.zip
+          mv uploads/packages/*.zip uploads/packages/archive/$filename_$(date +%F-%H:%M).zip
+          mv uploads/packages/$filename app
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
