@@ -1,0 +1,26 @@
+name: extract a zip file
+
+  on:
+    push:
+      paths:
+        - 'uploads/packages/*.zip'
+        
+  jobs:
+    unzip:
+      runs-on: ubuntu-latest
+      
+      steps:
+        - uses: actions/checkout@v2
+        
+        - name:
+          run: |
+            rm -r app
+            filename=$(basename -s .zip *.zip)
+            unzip *.zip
+            mv *.zip uploads/packages/archive/$filename_$(date +%F-%H:%M).zip
+            mv $filename app
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git add .
+            git commit -m "unzip"
+            git push origin main
