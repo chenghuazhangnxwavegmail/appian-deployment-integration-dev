@@ -19,6 +19,7 @@ jobs:
   commit:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2 
       - name: commit
         run: |
           git config user.name github-actions
