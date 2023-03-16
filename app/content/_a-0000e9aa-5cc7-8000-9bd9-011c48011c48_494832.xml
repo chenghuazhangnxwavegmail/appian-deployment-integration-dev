@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <versionUuid>_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_497821</versionUuid>
-    <rule>
-        <name>CZS_rule_NewRuleAddedForGithubCommit</name>
-        <uuid>_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_497817</uuid>
+    <versionUuid>_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_494836</versionUuid>
+    <document>
+        <name>CZS PNG Image</name>
+        <uuid>_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_494832</uuid>
         <description></description>
-        <parentUuid>b28334b0-3380-4336-a518-c23dbf113968</parentUuid>
+        <parentUuid>651f7bfa-d2f4-47da-8bb1-e4492bc9d802</parentUuid>
         <visibility>
             <advertise>false</advertise>
             <hierarchy>true</hierarchy>
@@ -15,10 +15,8 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <definition></definition>
-        <preferredEditor>legacy</preferredEditor>
-        <offlineEnabled>false</offlineEnabled>
-    </rule>
+    </document>
+    <file>file.png</file>
     <roleMap public="true">
         <role inherit="true" allowForAll="false" name="readers">
             <users/>
@@ -46,6 +44,6 @@
         </role>
     </roleMap>
     <history>
-        <historyInfo versionUuid="_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_497821"/>
+        <historyInfo versionUuid="_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_494836"/>
     </history>
 </contentHaul>
