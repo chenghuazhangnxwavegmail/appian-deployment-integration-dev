@@ -1,6 +1,8 @@
 name: extract a zip file
 on:
   push:
+    branches:
+      - 'update'
     paths:
       - 'uploads/packages/*.zip'  
 jobs:
