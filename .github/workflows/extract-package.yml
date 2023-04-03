@@ -24,4 +24,4 @@ jobs:
           git config user.email github-actions@github.com
           git add .
           git commit -m "unzipped by github action"
-          git push origin main
+          git push origin update
