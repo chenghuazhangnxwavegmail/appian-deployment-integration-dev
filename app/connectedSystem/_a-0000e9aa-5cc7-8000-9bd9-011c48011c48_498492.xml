@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connectedSystemHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_498498</versionUuid>
+    <connectedSystem>
+        <name>CZS  Alteryx Server</name>
+        <uuid>_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_498492</uuid>
+        <description></description>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <sharedConfigParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <configurationDescriptor xsi:type="xsd:string"/>
+                <url xsi:type="xsd:string"/>
+                <isInheritedUrlOptionSelected xsi:type="xsd:boolean">false</isInheritedUrlOptionSelected>
+                <baseUrl xsi:type="xsd:string">http://18.135.200.31/webapi/</baseUrl>
+                <authType xsi:type="xsd:string">OAuth Client Credentials Grant</authType>
+                <authDetails xsi:type="a:Dictionary">
+                    <clientSecret xsi:type="a:EncryptedText"/>
+                    <clientId xsi:type="xsd:string"/>
+                    <tokenUrl xsi:type="xsd:string">http://18.135.200.31/webapi/oauth2/token</tokenUrl>
+                    <scope xsi:type="xsd:string"/>
+                </authDetails>
+            </a:Dictionary>
+        </sharedConfigParameters>
+        <logoChoice></logoChoice>
+        <integrationType>system.http</integrationType>
+    </connectedSystem>
+    <roleMap public="true">
+        <role inherit="false" allowForAll="false" name="readers">
+            <users/>
+            <groups>
+                <groupUuid>83461319-3fca-49b2-9774-af5402a8be49</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users/>
+            <groups>
+                <groupUuid>caee0430-da9a-4527-b06f-6314ac4310b9</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_498498"/>
+    </history>
+</connectedSystemHaul>
