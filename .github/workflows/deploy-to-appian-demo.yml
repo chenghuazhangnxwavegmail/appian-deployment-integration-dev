@@ -20,7 +20,7 @@ jobs:
     environment: appian-demo
     steps:
       - uses: actions/checkout@v3
-      - name: inspect
+      - name: deploy
         run: |
           zip_file_path=$(ls -Art uploads/packages/archive/*.zip | tail -n 1)
           zip_file_name=$(basename "${zip_file_path}")
@@ -36,11 +36,11 @@ jobs:
           ins_uuid=$(jq -n "${ins_res_1}" | jq '.uuid' | tr -d \")
           ins_url="${appian_base_url}deployment-management/v1/inspections/${ins_uuid}"
           echo "$ins_url"
+          sleep 5
           ins_status="IN_PROGRESS"
           i=0
           while [ "$i" -lt 60 ]
           do
-            sleep 60
             ins_res_2=$(curl -s -X GET -H "Appian-API-Key: ${appian_api_key}" \
               "${ins_url}")
             echo "$ins_res_2"
@@ -52,11 +52,10 @@ jobs:
               break
             fi
             
+            sleep 60
             i="expr $i + 1"
           done
-        
-      - name: deploy
-        run: |
+          
           if [ "${ins_status}" = "COMPLETED" ]
           then
             curl -X POST -H "Appian-API-Key: ${appian_api_key}" \
