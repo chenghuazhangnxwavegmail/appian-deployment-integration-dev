@@ -20,6 +20,7 @@ jobs:
     environment: appian-demo
     steps:
       - uses: actions/checkout@v3
+      - uses: wei/curl@master
       - name: inspect
         run: |
           zip_file_path=$(ls -Art uploads/packages/archive/*.zip | tail -n 1)
@@ -30,5 +31,4 @@ jobs:
               }"' \
             -F 'zipFile=@"${zip_file_path}"' \
             "${{ vars.APPIAN_BASE_URL_DEMO }}deployment-management/v1/inspections")
-          ins_uuid=$(jq -n "${ins_res_1}" | jq '.uuid' | tr -d \")
-          ins_url="${appian_base_url}deployment-management/v1/inspections/${ins_uuid}"
+
