@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<applicationPatches>
+    <applicationPatch>
+        <applicationUuid>496eef4c-7c4f-43a3-b25e-fa59504f3982</applicationUuid>
+        <packageInfo>
+            <url></url>
+        </packageInfo>
+        <patchContents>
+            <item>
+                <type>connectedSystem</type>
+                <uuids>
+                    <uuid>_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_498492</uuid>
+                </uuids>
+            </item>
+            <item>
+                <type>content</type>
+                <uuids>
+                    <uuid>_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_494922</uuid>
+                    <uuid>_a-0000e9aa-5cc7-8000-9bd9-011c48011c48_498619</uuid>
+                    <uuid>f0ebb418-82b0-4cff-bccc-75a123b8d5b2</uuid>
+                </uuids>
+            </item>
+            <item>
+                <type>processModel</type>
+                <uuids>
+                    <uuid>0002e9b4-12a6-8000-16b0-7f0000014e7a</uuid>
+                </uuids>
+            </item>
+        </patchContents>
+    </applicationPatch>
+</applicationPatches>
