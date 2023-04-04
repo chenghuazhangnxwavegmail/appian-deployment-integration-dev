@@ -26,7 +26,7 @@ jobs:
           zip_file_name=$(basename "${zip_file_path}")
           echo "$zip_file_path"
           echo "$zip_file_name"
-          curl -s -X POST -H "Appian-API-Key: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMDU4ZjA1MS0xZTM1LTRiNGItODRiMy1lNGI2ODFmZjU1NWQifQ.mmmqwV3LPLIq7qgxendrkMe_7JtoyexR982QOHxGYLE" \
+          curl -s -X POST -H "Appian-API-Key: ${appian_api_key}" \
             -F 'json="{
                 \"packageFileName\": \"Chenghua Sandbox.zip\"
               }"' \
