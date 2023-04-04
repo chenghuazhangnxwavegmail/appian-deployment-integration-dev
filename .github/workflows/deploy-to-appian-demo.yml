@@ -13,6 +13,7 @@ on:
 env:
   appian_api_key: ${{ secrets.APPIAN_API_KEY_DEMO }}
   appian_base_url: ${{ vars.APPIAN_BASE_URL_DEMO }}
+  appian_data_source: ${{ vars.APPIAN_DATA_SOURCE }}
 
 jobs:
   deployment:
@@ -37,10 +38,10 @@ jobs:
           echo "${json_p}"
           echo "${p_file_path}"
           
-          json_s=',\"dataSource\": \"jdbc/Appian\",\"databaseScripts\": [{\"fileName\": \"placeholder.sql\",\"orderId\": \"1\"}]'
+          json_s=',\"dataSource\": \"'"${appian_data_source}"'\",\"databaseScripts\": [{\"fileName\": \"placeholder.sql\",\"orderId\": \"1\"}]'
           s_file_path='@"uploads/packages/placeholders/placeholder.sql"'
           if [ -f uploads/packages/archive/"${file_short_name}.sql" ]; then
-            json_s=',\"dataSource\": \"jdbc/Appian\",\"databaseScripts\": [{\"fileName\": \"'"${file_short_name}"'.sql\",\"orderId\": \"1\"}]'
+            json_s=',\"dataSource\": \"'"${appian_data_source}"'\",\"databaseScripts\": [{\"fileName\": \"'"${file_short_name}"'.sql\",\"orderId\": \"1\"}]'
             s_file_path='@"uploads/packages/archive/'"${file_short_name}"'.sql"'
           fi
           echo "${json_s}"
