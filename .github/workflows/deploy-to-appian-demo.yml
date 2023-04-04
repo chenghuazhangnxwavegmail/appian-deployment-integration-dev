@@ -20,15 +20,13 @@ jobs:
     environment: appian-demo
     steps:
       - uses: actions/checkout@v3
-      - uses: wei/curl@master
       - name: inspect
         run: |
           zip_file_path=$(ls -Art uploads/packages/archive/*.zip | tail -n 1)
           zip_file_name=$(basename "${zip_file_path}")
-          ins_res_1=$(curl -s -X POST -H "Appian-API-Key: ${{ secrets.APPIAN_API_KEY_DEMO }}" \
+          ins_res_1=$(curl -s -X POST -H "Appian-API-Key: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMDU4ZjA1MS0xZTM1LTRiNGItODRiMy1lNGI2ODFmZjU1NWQifQ.mmmqwV3LPLIq7qgxendrkMe_7JtoyexR982QOHxGYLE" \
             -F 'json="{
                 \"packageFileName\": \"${zip_file_name}\"
               }"' \
             -F 'zipFile=@"${zip_file_path}"' \
             "${{ vars.APPIAN_BASE_URL_DEMO }}deployment-management/v1/inspections")
-
