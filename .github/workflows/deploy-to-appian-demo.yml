@@ -28,18 +28,18 @@ jobs:
           echo "$zip_file_path"
           echo "$file_short_name"
           
-          json_p=''
+          json_p=',\"customizationFileName\": \"placeholder.properties\"'
           p_file_path='@"uploads/packages/placeholders/placeholder.properties"'
-          if [ -f uploads/packages/archive/"${file_short_name}".properties ]; then
+          if [ -f uploads/packages/archive/"${file_short_name}.properties" ]; then
             json_p=',\"customizationFileName\": \"'"${file_short_name}"'.properties\"'
             p_file_path='@"uploads/packages/archive/'"${file_short_name}"'.properties"'
           fi
           echo "${json_p}"
           echo "${p_file_path}"
           
-          json_s=''
+          json_s=',\"dataSource\": \"jdbc/Appian\",\"databaseScripts\": [{\"fileName\": \"placeholder.sql\",\"orderId\": \"1\"}]'
           s_file_path='@"uploads/packages/placeholders/placeholder.sql"'
-          if [ -f uploads/packages/archive/"${file_short_name}".sql ]; then
+          if [ -f uploads/packages/archive/"${file_short_name}.sql" ]; then
             json_s=',\"dataSource\": \"jdbc/Appian\",\"databaseScripts\": [{\"fileName\": \"'"${file_short_name}"'.sql\",\"orderId\": \"1\"}]'
             s_file_path='@"uploads/packages/archive/'"${file_short_name}"'.sql"'
           fi
