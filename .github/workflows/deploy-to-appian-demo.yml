@@ -23,32 +23,4 @@ jobs:
       - name: inspect
         run: |
           zip_file_path=$(ls -Art uploads/packages/archive/*.zip | tail -n 1)
-          zip_file_name=$(basename "$zip_file_path")
-          ins_res_1=$(curl -s -X POST -H "Appian-API-Key: $appian_api_key" \
-            -F 'json="{
-                \"packageFileName\":\"${zip_file_name}\"
-              }"' \
-            -F 'zipFile=@"$zip_file_path"' \
-            '${appian_base_url}deployment-management/v1/inspections')
-          echo "$ins_res_1"
-          ins_uuid=$(jq -n "$ins_res_1" | jq '.uuid' | tr -d \")
-          ins_url="${appian_base_url}deployment-management/v1/inspections/${ins_uuid}"
-          echo "$ins_url"
-          
-          i=0
-          while [ "$i" -lt 3 ]
-          do
-            sleep 1
-            ins_res_2=$(curl -s -X GET -H "Appian-API-Key: $appian_api_key" \
-              "$ins_url")
-            echo "$ins_res_2"
-            ins_status=$(jq -n "$ins_res_2" | jq '.status' | tr -d \*)
-            echo "$ins_status"
-            
-            if [ "$ins_status" = "COMPLETED" ]
-            then
-              break
-            fi
-            
-            i=`expr $i + 1`
-          done
+          zip_file_name=$(basename "${zip_file_path}")
