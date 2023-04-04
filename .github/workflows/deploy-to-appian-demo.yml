@@ -29,7 +29,7 @@ jobs:
           echo "$file_short_name"
           
           json_p=''
-          p_file_path=''
+          p_file_path='@"uploads/packages/placeholders/placeholder.properties"'
           if [ -f uploads/packages/archive/"${file_short_name}".properties ]; then
             json_p=',\"customizationFileName\": \"'"${file_short_name}"'.properties\"'
             p_file_path='@"uploads/packages/archive/'"${file_short_name}"'.properties"'
@@ -38,7 +38,7 @@ jobs:
           echo "${p_file_path}"
           
           json_s=''
-          s_file_path=''
+          s_file_path='@"uploads/packages/placeholders/placeholder.sql"'
           if [ -f uploads/packages/archive/"${file_short_name}".sql ]; then
             json_s=',\"dataSource\": \"jdbc/Appian\",\"databaseScripts\": [{\"fileName\": \"'"${file_short_name}"'.sql\",\"orderId\": \"1\"}]'
             s_file_path='@"uploads/packages/archive/'"${file_short_name}"'.sql"'
