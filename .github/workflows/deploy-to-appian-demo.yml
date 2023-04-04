@@ -39,7 +39,7 @@ jobs:
           sleep 5
           ins_status="IN_PROGRESS"
           i=0
-          while [ "$i" -lt 60 ]
+          while [ "$i" -lt 6 ]
           do
             ins_res_2=$(curl -s -X GET -H "Appian-API-Key: ${appian_api_key}" \
               "${ins_url}")
@@ -47,13 +47,12 @@ jobs:
             ins_status=$(jq -n "${ins_res_2}" | jq '.status' | tr -d \*)
             echo "$ins_status"
             
-            if [ "${ins_status}" = "COMPLETED" ]
-            then
+            if [ "${ins_status}" = "COMPLETED" ]; then
               break
             fi
             
-            sleep 60
-            i=`expr $i + 1`
+            sleep 1
+            i=$(($i + 1))
           done
           
           if [ "${ins_status}" = "COMPLETED" ]
