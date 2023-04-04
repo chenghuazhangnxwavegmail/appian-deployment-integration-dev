@@ -28,7 +28,7 @@ jobs:
           echo "$zip_file_name"
           curl -s -X POST -H "Appian-API-Key: ${appian_api_key}" \
             -F 'json="{
-                \"packageFileName\": \"Chenghua Sandbox.zip\"
+                \"packageFileName\": \"'"${zip_file_name}"'\"
               }"' \
-            -F 'zipFile=@"${zip_file_path}"' \
+            -F 'zipFile=@"'"${zip_file_path}"'"' \
             "${appian_base_url}deployment-management/v1/inspections"
