@@ -24,3 +24,11 @@ jobs:
         run: |
           zip_file_path=$(ls -Art uploads/packages/archive/*.zip | tail -n 1)
           zip_file_name=$(basename "${zip_file_path}")
+          ins_res_1=$(curl -s -X POST -H "Appian-API-Key: ${appian_api_key}" \
+            -F 'json="{
+                \"packageFileName\":\"${zip_file_name}\"
+              }"' \
+            -F 'zipFile=@"${zip_file_path}"' \
+            '${appian_base_url}deployment-management/v1/inspections')
+          ins_uuid=$(jq -n "${ins_res_1}" | jq '.uuid' | tr -d \")
+          ins_url="${appian_base_url}deployment-management/v1/inspections/${ins_uuid}"
