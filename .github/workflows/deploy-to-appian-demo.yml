@@ -24,11 +24,23 @@ jobs:
         run: |
           zip_file_path=$(ls -Art uploads/packages/archive/*.zip | tail -n 1)
           zip_file_name=$(basename "${zip_file_path}")
+          file_short_name=$(basename -s .zip "${zip_file_path}")
           echo "$zip_file_path"
-          echo "$zip_file_name"
+          echo "$file_short_name"
+          
+          json_p=''
+          if [ -f "uploads/packages/archive/${file_short_name}.properties" ]; then
+            json_p=',\"customizationFileName\": \"'"${file_short_name}"'.properties\"'
+          fi
+          
+          json_s=''
+          if [ -f "uploads/packages/archive/${file_short_name}.sql" ]; then
+            json_s=',\"dataSource\": \"jdbc/Appian\",\"databaseScripts\": [{\"fileName\": \"'"${file_short_name}"'.sql\",\"orderId\": \"1\"}]'
+          fi
+          
           ins_res_1=$(curl -s -X POST -H "Appian-API-Key: ${appian_api_key}" \
             -F 'json="{
-                \"packageFileName\": \"'"${zip_file_name}"'\"
+                \"packageFileName\": \"'"${zip_file_name}"'\"'"${json_p}"'
               }"' \
             -F 'zipFile=@"'"${zip_file_path}"'"' \
             "${appian_base_url}deployment-management/v1/inspections")
@@ -62,7 +74,7 @@ jobs:
             -F 'json="{
                 \"name\": \"Deployment from GitHub\",
                 \"description\": \"Deployment from GitHub\",
-                \"packageFileName\": \"'"${zip_file_name}"'\"
+                \"packageFileName\": \"'"${zip_file_name}"'\"'"${json_p}${json_s}"'
               }"' \
             -F 'randomKey1=@"'"${zip_file_path}"'"' \
             "${appian_base_url}deployment-management/v1/deployments"
