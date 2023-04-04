@@ -12,11 +12,19 @@ jobs:
       - uses: actions/checkout@v3
       - name: unzip
         run: |
-          rm -rf app
-          filename=$(basename -s .zip uploads/packages/*.zip)
-          mkdir app
-          unzip uploads/packages/*.zip -d app
-          mv uploads/packages/*.zip uploads/packages/archive/$(date +%F-%H:%M).zip
+          file_name=$(date +%F-%H:%M)
+          echo "${filename}"
+          mkdir -p app
+          unzip -o uploads/packages/*.zip -d app
+          mv uploads/packages/*.zip "uploads/packages/archive/${file_name}.zip"
+          
+          if [ -f uploads/packages/*.properties ]; then
+           mv uploads/packages/*.properties "uploads/packages/archive/${file_name}.properties"
+          fi
+          
+          if [ -f uploads/packages/*.sql ]; then
+           mv uploads/packages/*.sql "uploads/packages/archive/${file_name}.sql"
+          fi
 
       - name: commit
         run: |
