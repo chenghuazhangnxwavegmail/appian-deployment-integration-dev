@@ -37,9 +37,9 @@ jobs:
           ins_url="${appian_base_url}deployment-management/v1/inspections/${ins_uuid}"
           echo "$ins_url"
           i=0
-          while [ "$i" -lt 3 ]
+          while [ "$i" -lt 60 ]
           do
-            sleep 1
+            sleep 60
             ins_res_2=$(curl -s -X GET -H "Appian-API-Key: ${appian_api_key}" \
               "${ins_url}")
             echo "$ins_res_2"
