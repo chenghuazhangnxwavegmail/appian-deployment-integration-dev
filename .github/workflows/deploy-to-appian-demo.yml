@@ -36,7 +36,8 @@ jobs:
           ins_uuid=$(jq -n "${ins_res_1}" | jq '.uuid' | tr -d \")
           ins_url="${appian_base_url}deployment-management/v1/inspections/${ins_uuid}"
           echo "$ins_url"
-          sleep 5
+          sleep 2
+          
           ins_status="IN_PROGRESS"
           i=0
           while [ "$i" -lt 6 ]
@@ -44,14 +45,14 @@ jobs:
             ins_res_2=$(curl -s -X GET -H "Appian-API-Key: ${appian_api_key}" \
               "${ins_url}")
             echo "$ins_res_2"
-            ins_status=$(jq -n "${ins_res_2}" | jq '.status' | tr -d \*)
+            ins_status=$(jq -n "${ins_res_2}" | jq '.status' | tr -d \")
             echo "$ins_status"
             
             if [ "${ins_status}" = "COMPLETED" ]; then
               break
             fi
             
-            sleep 1
+            sleep 60
             i=$(($i + 1))
           done
           
