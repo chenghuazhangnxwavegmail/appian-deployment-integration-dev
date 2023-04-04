@@ -1,16 +1,4 @@
-documentFromDynamicTemplate
-Advanced Document Templating
-1.0.11
-
-com.appian.imageutils
-Appian Image Utilities 2
-2.0.1
-
 com.appiancorp.ps.db
 Base64 to Database Services
 1.0.4
-
-chartcreator2
-Chart Generator
-1.2.1
 
