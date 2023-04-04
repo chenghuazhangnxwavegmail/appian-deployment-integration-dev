@@ -29,12 +29,12 @@ jobs:
           echo "$file_short_name"
           
           json_p=''
-          if [ -f "uploads/packages/archive/${file_short_name}.properties" ]; then
+          if [ -f uploads/packages/archive/"${file_short_name}".properties ]; then
             json_p=',\"customizationFileName\": \"'"${file_short_name}"'.properties\"'
           fi
           
           json_s=''
-          if [ -f "uploads/packages/archive/${file_short_name}.sql" ]; then
+          if [ -f uploads/packages/archive/"${file_short_name}".sql ]; then
             json_s=',\"dataSource\": \"jdbc/Appian\",\"databaseScripts\": [{\"fileName\": \"'"${file_short_name}"'.sql\",\"orderId\": \"1\"}]'
           fi
           
