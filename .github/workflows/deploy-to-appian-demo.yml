@@ -26,9 +26,9 @@ jobs:
           zip_file_name=$(basename "${zip_file_path}")
           ins_res_1=$(curl -s -X POST -H "Appian-API-Key: ${{ secrets.APPIAN_API_KEY_DEMO }}" \
             -F 'json="{
-                \"packageFileName\": \"${{ zip_file_name }}\"
+                \"packageFileName\": \"${zip_file_name}\"
               }"' \
-            -F 'zipFile=@"${{ zip_file_path }}"' \
+            -F 'zipFile=@"${zip_file_path}"' \
             "${{ vars.APPIAN_BASE_URL_DEMO }}deployment-management/v1/inspections")
           ins_uuid=$(jq -n "${ins_res_1}" | jq '.uuid' | tr -d \")
           ins_url="${appian_base_url}deployment-management/v1/inspections/${ins_uuid}"
