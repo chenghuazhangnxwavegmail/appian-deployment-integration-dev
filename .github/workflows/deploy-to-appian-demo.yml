@@ -29,22 +29,29 @@ jobs:
           echo "$file_short_name"
           
           json_p=''
+          p_file_path=''
           if [ -f uploads/packages/archive/"${file_short_name}".properties ]; then
             json_p=',\"customizationFileName\": \"'"${file_short_name}"'.properties\"'
-            echo "$json_p"
+            p_file_path='@"uploads/packages/archive/'"${file_short_name}"'.properties"'
           fi
+          echo "${json_p}"
+          echo "${p_file_path}"
           
           json_s=''
+          s_file_path=''
           if [ -f uploads/packages/archive/"${file_short_name}".sql ]; then
             json_s=',\"dataSource\": \"jdbc/Appian\",\"databaseScripts\": [{\"fileName\": \"'"${file_short_name}"'.sql\",\"orderId\": \"1\"}]'
-            echo "$json_s"
+            s_file_path='@"uploads/packages/archive/'"${file_short_name}"'.sql"'
           fi
+          echo "${json_s}"
+          echo "${s_file_path}"
           
           ins_res_1=$(curl -s -X POST -H "Appian-API-Key: ${appian_api_key}" \
             -F 'json="{
                 \"packageFileName\": \"'"${zip_file_name}"'\"'"${json_p}"'
               }"' \
             -F 'zipFile=@"'"${zip_file_path}"'"' \
+            -F 'ICF='"${p_file_path}" \
             "${appian_base_url}deployment-management/v1/inspections")
           echo "$ins_res_1"
           ins_uuid=$(jq -n "${ins_res_1}" | jq '.uuid' | tr -d \")
@@ -79,5 +86,7 @@ jobs:
                 \"packageFileName\": \"'"${zip_file_name}"'\"'"${json_p}${json_s}"'
               }"' \
             -F 'randomKey1=@"'"${zip_file_path}"'"' \
+            -F 'randomKey2='"${p_file_path}" \
+            -F 'randomKey3='"${s_file_path}" \
             "${appian_base_url}deployment-management/v1/deployments"
           fi
