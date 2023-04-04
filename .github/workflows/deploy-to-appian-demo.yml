@@ -60,7 +60,7 @@ jobs:
           then
             curl -X POST -H "Appian-API-Key: ${appian_api_key}" \
             -F 'json="{
-                \"name\": \"Deployment from GitHub CI/CD\",
+                \"name\": \"Deployment from GitHub\",
                 \"description\": \"Deployment from GitHub\",
                 \"packageFileName\": \"'"${zip_file_name}"'\"
               }"' \
